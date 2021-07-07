@@ -46,7 +46,7 @@ class DetailsFragment : Fragment() {
         val email = firebaseAuth.currentUser?.email
         binding.email.text = email
 
-        Glide.with(requireContext()).load(firebaseAuth.currentUser?.photoUrl).circleCrop()
+        Glide.with(requireContext()).load(firebaseAuth.currentUser?.photoUrl).circleCrop().placeholder(R.drawable.placeholder)
             .into(binding.profileImg)
 
 

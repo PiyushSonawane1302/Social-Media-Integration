@@ -129,7 +129,8 @@ class LoginFragment : Fragment() {
 
 
         binding.forgotPass.setOnClickListener {
-            Log.d("TEST", "Forgot Pass Clicked")
+            val action = LoginFragmentDirections.actionLoginFragmentToForgotPassword()
+            view.findNavController().navigate(action)
         }
 
         binding.register.setOnClickListener {

@@ -20,7 +20,7 @@
         android:textSize="20sp" />
 
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profileImg"
         android:layout_width="120dp"
         android:layout_height="120dp"
@@ -76,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="190dp"
         android:background="@drawable/button_background"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
