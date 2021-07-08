@@ -49,6 +49,9 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/detailsFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_detailsFragment_to_loginFragment2"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgotPassword"

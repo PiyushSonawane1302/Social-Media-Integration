@@ -113,9 +113,6 @@ class LoginFragment : Fragment() {
                     OnCompleteListener {
                         if (it.isSuccessful) {
                             checkMailVerification()
-                            val action =
-                                LoginFragmentDirections.actionLoginFragmentToDetailsFragment()
-                            view.findNavController().navigate(action)
                         } else {
                             Toast.makeText(
                                 requireContext(),
