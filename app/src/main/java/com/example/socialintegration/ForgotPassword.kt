@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class ForgotPassword : Fragment() {
 
-    private var _binding:FragmentForgotPasswordBinding? = null
+    private var _binding: FragmentForgotPasswordBinding? = null
     private val binding get() = _binding!!
     private lateinit var firebaseAuth: FirebaseAuth
 
@@ -23,7 +23,7 @@ class ForgotPassword : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentForgotPasswordBinding.inflate(inflater,container,false)
+        _binding = FragmentForgotPasswordBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -36,7 +36,7 @@ class ForgotPassword : Fragment() {
             val email = binding.emailForgotPassEt.text.toString()
             if (email.isEmpty()) {
                 Toast.makeText(requireContext(), "Enter your Email", Toast.LENGTH_SHORT).show()
-            }else {
+            } else {
 
                 firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(
                     OnCompleteListener() {
@@ -46,7 +46,8 @@ class ForgotPassword : Fragment() {
                                 "Recovery mail sent to your Registered email",
                                 Toast.LENGTH_SHORT
                             ).show()
-                           val action = ForgotPasswordDirections.actionForgotPasswordToLoginFragment()
+                            val action =
+                                ForgotPasswordDirections.actionForgotPasswordToLoginFragment()
                             view.findNavController().navigate(action)
                         } else {
                             Toast.makeText(

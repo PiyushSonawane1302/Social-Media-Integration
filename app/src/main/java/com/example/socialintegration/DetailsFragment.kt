@@ -14,16 +14,16 @@ import com.google.firebase.auth.FirebaseAuth
 
 class DetailsFragment : Fragment() {
 
-    private var _binding:FragmentDetailsBinding? = null
+    private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var firebaseAuth:FirebaseAuth
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentDetailsBinding.inflate(inflater,container,false)
+        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -40,15 +40,15 @@ class DetailsFragment : Fragment() {
 
         }
 
-        val username  = firebaseAuth.currentUser?.displayName
+        val username = firebaseAuth.currentUser?.displayName
         binding.userName.text = username
 
         val email = firebaseAuth.currentUser?.email
         binding.email.text = email
 
-        Glide.with(requireContext()).load(firebaseAuth.currentUser?.photoUrl).circleCrop().placeholder(R.drawable.placeholder)
+        Glide.with(requireContext()).load(firebaseAuth.currentUser?.photoUrl).circleCrop()
+            .placeholder(R.drawable.placeholder)
             .into(binding.profileImg)
-
 
 
     }

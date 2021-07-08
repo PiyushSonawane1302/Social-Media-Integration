@@ -27,7 +27,7 @@
         android:id="@+id/signUpFragment"
         android:name="com.example.socialintegration.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
+        tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/action_signUpFragment_to_detailsFragment"
             app:destination="@id/detailsFragment"
@@ -43,7 +43,7 @@
         android:id="@+id/detailsFragment"
         android:name="com.example.socialintegration.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" >
+        tools:layout="@layout/fragment_details">
         <action
             android:id="@+id/action_detailsFragment_to_loginFragment"
             app:destination="@id/loginFragment"
@@ -57,7 +57,7 @@
         android:id="@+id/forgotPassword"
         android:name="com.example.socialintegration.ForgotPassword"
         android:label="fragment_forgot_password"
-        tools:layout="@layout/fragment_forgot_password" >
+        tools:layout="@layout/fragment_forgot_password">
         <action
             android:id="@+id/action_forgotPassword_to_loginFragment"
             app:destination="@id/loginFragment" />

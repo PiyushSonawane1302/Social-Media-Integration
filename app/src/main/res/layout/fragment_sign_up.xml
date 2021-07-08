@@ -86,11 +86,11 @@
             <com.facebook.login.widget.LoginButton
                 android:id="@+id/login_button"
                 android:layout_width="90dp"
-                android:visibility="gone"
                 android:layout_height="match_parent"
                 android:layout_marginTop="40dp"
                 android:backgroundTint="@color/transparent"
-                android:textColor="@color/transparent" />
+                android:textColor="@color/transparent"
+                android:visibility="gone" />
 
 
         </FrameLayout>

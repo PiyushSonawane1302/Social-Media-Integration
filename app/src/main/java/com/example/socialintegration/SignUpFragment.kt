@@ -25,19 +25,18 @@ import com.google.firebase.auth.GoogleAuthProvider
 
 class SignUpFragment : Fragment() {
 
-    companion object{
+    companion object {
         private const val RC_SIGN_IN = 100
         private const val EMAIL = "email"
         private const val TAG = "TEST"
     }
 
 
-    private var _binding:FragmentSignUpBinding?=null
+    private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var callBackManager: CallbackManager
-
 
 
     override fun onCreateView(
@@ -49,7 +48,6 @@ class SignUpFragment : Fragment() {
         binding.loginButton.fragment = this
         return binding.root
     }
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -94,17 +92,19 @@ class SignUpFragment : Fragment() {
             val email = binding.emailSignUpEt.text.toString()
             val pass = binding.passwordSignupEt.text.toString()
 
-            if (email.isEmpty()||pass.isEmpty()){
-                Toast.makeText(requireContext(), "Please enter all fields", Toast.LENGTH_SHORT).show()
-            }
-            else{
+            if (email.isEmpty() || pass.isEmpty()) {
+                Toast.makeText(requireContext(), "Please enter all fields", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
 //                Log.d("TEST","Email : $email , Password : $pass")
                 firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
-                    if (it.isSuccessful){
-                        Toast.makeText(view.context, "Registration Successful", Toast.LENGTH_SHORT).show()
+                    if (it.isSuccessful) {
+                        Toast.makeText(view.context, "Registration Successful", Toast.LENGTH_SHORT)
+                            .show()
                         sendEmailVerification()
-                    } else{
-                        Toast.makeText(view.context, "Failed to Register", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(view.context, "Failed to Register", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
 
@@ -150,7 +150,7 @@ class SignUpFragment : Fragment() {
 
     private fun sendEmailVerification() {
         val firebaseUser: FirebaseUser? = firebaseAuth.currentUser
-        if (firebaseUser!=null){
+        if (firebaseUser != null) {
             firebaseUser.sendEmailVerification().addOnCompleteListener {
                 Toast.makeText(
                     requireContext(),
@@ -161,8 +161,7 @@ class SignUpFragment : Fragment() {
                 val action = SignUpFragmentDirections.actionSignUpFragmentToLoginFragment()
                 findNavController().navigate(action)
             }
-        }
-        else{
+        } else {
             Toast.makeText(requireContext(), "Failed to verify", Toast.LENGTH_SHORT).show()
         }
     }
@@ -178,7 +177,7 @@ class SignUpFragment : Fragment() {
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             val exception = task.exception
-            if (task.isSuccessful){
+            if (task.isSuccessful) {
                 try {
                     // Google Sign In was successful, authenticate with Firebase
                     val account = task.getResult(ApiException::class.java)!!
@@ -188,10 +187,10 @@ class SignUpFragment : Fragment() {
                     // Google Sign In failed, update UI appropriately
                     Log.w("Sign In Activity", "Google sign in failed", e)
                 }
-            }else{
+            } else {
                 Log.w("Sign In Activity", "Google sign in failed", exception)
             }
-        }else{
+        } else {
             callBackManager.onActivityResult(requestCode, resultCode, data);
         }
     }
@@ -199,17 +198,17 @@ class SignUpFragment : Fragment() {
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener() { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("Sign In Activity", "signInWithCredential:success")
-                    Toast.makeText(requireContext(), "Logged In", Toast.LENGTH_SHORT).show()
-                    val action = SignUpFragmentDirections.actionSignUpFragmentToDetailsFragment()
-                    view?.findNavController()?.navigate(action)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("Sign In Activity", "signInWithCredential:failure", task.exception)
-                }
+            if (task.isSuccessful) {
+                // Sign in success, update UI with the signed-in user's information
+                Log.d("Sign In Activity", "signInWithCredential:success")
+                Toast.makeText(requireContext(), "Logged In", Toast.LENGTH_SHORT).show()
+                val action = SignUpFragmentDirections.actionSignUpFragmentToDetailsFragment()
+                view?.findNavController()?.navigate(action)
+            } else {
+                // If sign in fails, display a message to the user.
+                Log.w("Sign In Activity", "signInWithCredential:failure", task.exception)
             }
+        }
     }
 
     override fun onDestroyView() {
