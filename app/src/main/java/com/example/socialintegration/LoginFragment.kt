@@ -35,7 +35,9 @@ class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var firebaseAuth: FirebaseAuth
+
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var callBackManager: CallbackManager
 
@@ -146,6 +148,9 @@ class LoginFragment : Fragment() {
     }
 
 
+    /**
+     * Method for handling the facebook login
+     */
     private fun handleFacebookAccessToken(token: AccessToken) {
 
         Log.d(TAG, "handleFacebookAccessToken:$token")
@@ -171,6 +176,9 @@ class LoginFragment : Fragment() {
             }
     }
 
+    /**
+     * Method for checking the email is verified or not
+     */
     private fun checkMailVerification() {
 
         val firebaseUser: FirebaseUser? = firebaseAuth.currentUser
@@ -219,6 +227,9 @@ class LoginFragment : Fragment() {
         }
     }
 
+    /**
+     * Method for the google signIn
+     */
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener() { task ->

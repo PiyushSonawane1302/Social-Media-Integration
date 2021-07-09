@@ -38,6 +38,7 @@ class ForgotPassword : Fragment() {
                 Toast.makeText(requireContext(), "Enter your Email", Toast.LENGTH_SHORT).show()
             } else {
 
+                // sending link to user on registered email to reset the password
                 firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(
                     OnCompleteListener() {
                         if (it.isSuccessful) {

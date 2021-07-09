@@ -123,6 +123,9 @@ class SignUpFragment : Fragment() {
 
     }
 
+    /**
+     * Method for handling the facebook login
+     */
     private fun handleFacebookAccessToken(token: AccessToken) {
 
         Log.d(TAG, "handleFacebookAccessToken:$token")
@@ -195,6 +198,9 @@ class SignUpFragment : Fragment() {
         }
     }
 
+    /**
+     * Method for the google signIn
+     */
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener() { task ->

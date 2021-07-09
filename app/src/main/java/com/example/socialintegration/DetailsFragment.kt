@@ -16,6 +16,7 @@ class DetailsFragment : Fragment() {
 
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreateView(
@@ -46,6 +47,7 @@ class DetailsFragment : Fragment() {
         val email = firebaseAuth.currentUser?.email
         binding.email.text = email
 
+        //for loading the profile image of the user
         Glide.with(requireContext()).load(firebaseAuth.currentUser?.photoUrl).circleCrop()
             .placeholder(R.drawable.placeholder)
             .into(binding.profileImg)
